@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Menu.unity
+    path: Assets/Scenes/Menu.unity
     guid: e604aa5aae0cb55499043ba385b1aed6
   - enabled: 1
-    path: Assets/Prefabs/PrisonMap.unity
-    guid: f0a9d210b44da6b4eb52a12aad0eed13
+    path: Assets/Scenes/Level1Scene.unity
+    guid: 6b102e40d524a9e49b1051e79bbe0485
   m_configObjects: {}

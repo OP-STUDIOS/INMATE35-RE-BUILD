@@ -818,7 +818,7 @@ MonoBehaviour:
   LaserOnlyOnZoom: 1
   DebugAim: 0
   Aim: {fileID: 1024792319909655545}
-  Bullet: {fileID: 100000, guid: cc2dcb99cb7842448b07c2167af83cb8, type: 3}
+  Bullet: {fileID: 1753991881584902, guid: ef664a207c176cd448654141d0a0ab9d, type: 3}
   LeftHandDefault: {fileID: 1023200835616949379}
   DamageResponseWaitTime: 1
   UseCustomCrosshair: 0
