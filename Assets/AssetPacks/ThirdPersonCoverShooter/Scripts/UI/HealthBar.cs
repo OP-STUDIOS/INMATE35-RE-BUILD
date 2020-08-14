@@ -58,10 +58,7 @@ namespace CoverShooter
 
         public Image bloodImage;
         public float hpValue;
-        private void Start()
-        {
-            
-        }
+
         private void LateUpdate()
         {
             if (Target != _cachedTarget)
@@ -114,7 +111,8 @@ namespace CoverShooter
         public void Update()
         {
             hpValue = 1 - Value;
-            bloodImage.color = new Color(1, 1, 1, hpValue);
+            float newHealth = Mathf.Clamp(hpValue, 0f, 0.6f);
+            bloodImage.color = new Color(1, 1, 1, newHealth);
         }
     }
 }

@@ -173,7 +173,7 @@ namespace CoverShooter
             obj.transform.position = position;
             obj.SetActive(true);
 
-            GameObject.Destroy(obj, 3);
+            GameObject.Destroy(obj, 2);
         }
     }
 }

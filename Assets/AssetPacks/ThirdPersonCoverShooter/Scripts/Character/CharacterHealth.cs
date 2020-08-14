@@ -136,14 +136,18 @@ namespace CoverShooter
             var wasOff = _isDead;
             _isDead = true;
             Health = 0;
-            GameObject.FindObjectOfType<GameMaster>().AddScore();
-
+            
             if (!wasOff && Died != null)
                 Died();
 
             if(gameObject.tag == "Player")
             {
-                FindObjectOfType<GameMaster>().Defeated();
+                FindObjectOfType<GameMaster>().GameOver();
+            }
+
+            if (gameObject.tag == "Enemy")
+            {
+                FindObjectOfType<GameMaster>().AddScore();
             }
         }
 

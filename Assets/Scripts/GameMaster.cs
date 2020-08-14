@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using CoverShooter;
 
 public class GameMaster : MonoBehaviour
 {
@@ -14,11 +15,10 @@ public class GameMaster : MonoBehaviour
 
     public GameObject gameGUI;
     public GameObject pauseMenu;
+    public GameObject crossHair;
 
     public GameObject VictoryText;
     public GameObject DefeatedText;
-
-    public GameObject[] enemyArray;
 
     private void Start()
     {
@@ -27,6 +27,8 @@ public class GameMaster : MonoBehaviour
         UpdateCurrentScoreText();
         UpdateHighScoreText();
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -40,14 +42,6 @@ public class GameMaster : MonoBehaviour
             else
             {
                 ResumeGame();
-            }
-        }
-        if(enemyArray.Length == 0)
-        {
-            if(currentScore > 50)
-            {
-                Success();
-
             }
         }
     }
@@ -76,44 +70,56 @@ public class GameMaster : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         gameGUI.SetActive(false);
         pauseMenu.SetActive(true);
+        crossHair.SetActive(false);
+        FindObjectOfType<ThirdPersonInput>().isCharacterPaused = true;
         gameIsPaused = true;
-        Cursor.visible = true;
-        
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pauseMenu.SetActive(false);
         gameGUI.SetActive(true);
+        crossHair.SetActive(true);
+        FindObjectOfType<ThirdPersonInput>().isCharacterPaused = false;
         gameIsPaused = false;
         DefeatedText.SetActive(false);
         VictoryText.SetActive(false);
-        Cursor.visible = false;
     }
 
-    public void Defeated()
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    IEnumerator GameOverRoutine()
     {
         DefeatedText.SetActive(true);
-        StartCoroutine(Delay3());
+        yield return new WaitForSeconds(2f);
+        gameGUI.SetActive(false);
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
-    public void Success()
+
+    public void GameWon()
+    {
+        StartCoroutine(GameWonRoutine());
+    }
+
+    IEnumerator GameWonRoutine()
     {
         VictoryText.SetActive(true);
-        StartCoroutine(Delay3());
-    }
-
-    IEnumerator Delay3()
-    {
-        yield return new WaitForSeconds(3);
-        PauseGame();
-    }
-    public void EnemyCount()
-    {
-        GameObject.FindGameObjectsWithTag("Enemy");
-        enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
-
+        yield return new WaitForSeconds(2f);
+        gameGUI.SetActive(false);
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 }

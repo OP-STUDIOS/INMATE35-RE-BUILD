@@ -135,6 +135,7 @@ namespace CoverShooter
         private float _timeA;
         private float _timeS;
         private float _timeD;
+        public bool isCharacterPaused = false;
 
         private float _leftMoveIntensity = 1;
         private float _rightMoveIntensity = 1;
@@ -154,22 +155,23 @@ namespace CoverShooter
         {
             if (Disabler != null && Disabler.activeSelf)
                 return;
-
-            UpdateCamera();
-            UpdateTarget();
-            UpdateCustomActions();
-            UpdateMovement();
-            UpdateWeapons();
-            UpdateReload();
-            UpdateRolling();
-            UpdateAttack();
-            UpdateGrenade();
-            UpdateCrouching();
-            UpdateClimbing();
-            UpdateCover();
-            UpdateJumping();
-
-            _controller.ManualUpdate();
+            if (!isCharacterPaused)
+            {
+                UpdateCamera();
+                UpdateTarget();
+                UpdateCustomActions();
+                UpdateMovement();
+                UpdateWeapons();
+                UpdateReload();
+                UpdateRolling();
+                UpdateAttack();
+                UpdateGrenade();
+                UpdateCrouching();
+                UpdateClimbing();
+                UpdateCover();
+                UpdateJumping();
+                _controller.ManualUpdate();
+            }
         }
 
         protected virtual void UpdateCustomActions()

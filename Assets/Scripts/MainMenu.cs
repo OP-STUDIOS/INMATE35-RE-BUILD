@@ -6,8 +6,8 @@ public class MainMenu : MonoBehaviour
 {
     void Awake()
     {
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
    public void OnPlayBtnClick()

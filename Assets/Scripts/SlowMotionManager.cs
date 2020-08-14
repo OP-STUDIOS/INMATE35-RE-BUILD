@@ -9,6 +9,7 @@ public class SlowMotionManager : MonoBehaviour
     public Image clockSlider;
     public GameObject camerastart;
     private SFX_Manager sfx_Manager;
+    private CharacterMotor playerCharacterMotor;
 
     public float slowMoSlider = 1;
 
@@ -20,28 +21,25 @@ public class SlowMotionManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         camerastart.GetComponent<Transform>().position = new Vector3(-56.64461f, 5.690623f, 20.4315f);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()
     {
         sfx_Manager = FindObjectOfType<SFX_Manager>();
+        playerCharacterMotor = GameObject.FindWithTag("Player").GetComponent<CharacterMotor>();
     }
 
     private void LateUpdate()
     {
-        if (UsingSlowMo)
-        {
-            slowMoSlider -= 0.5f * Time.deltaTime;
-        }
-        else
-        {
-            slowMoSlider += 0.1f * Time.deltaTime;
-        }
+        SlowMoSliderUpdate();
     }
 
     private void Update()
+    {
+        SlowMotionInput();
+    }
+
+    private void SlowMotionInput()
     {
         slowMoSlider = Mathf.Clamp(slowMoSlider, 0, 1);
         if (Input.GetKeyDown(KeyCode.Q))
@@ -78,23 +76,35 @@ public class SlowMotionManager : MonoBehaviour
         clockSlider.fillAmount = slowMoSlider;
     }
 
-    public void SlowMotionOn()
+    private void SlowMoSliderUpdate()
+    {
+        if (UsingSlowMo)
+        {
+            slowMoSlider -= 0.8f * Time.deltaTime;
+        }
+        else
+        {
+            slowMoSlider += 0.08f * Time.deltaTime;
+        }
+    }
+
+    private void SlowMotionOn()
     {
         Time.timeScale = 0.25f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        GameObject.FindWithTag("Player").GetComponent<CharacterMotor>().Speed = 4f;
         UsingSlowMo = true;
+        autoReset = false;
+        playerCharacterMotor.Speed = 4f;
         sfx_Manager.PlaySound("SlowMoEnter");
         sfx_Manager.PlaySoundOnLoop("SlowMoMiddle");
-        autoReset = false;
     }
 
-    public void SlowMotionOff()
+    private void SlowMotionOff()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
-        GameObject.FindWithTag("Player").GetComponent<CharacterMotor>().Speed = 1f;
         UsingSlowMo = false;
+        playerCharacterMotor.Speed = 1f;
         sfx_Manager.PlaySound("SlowMoExit");
         sfx_Manager.StopSound("SlowMoMiddle");
     }

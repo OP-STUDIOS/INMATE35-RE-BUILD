@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace CoverShooter
@@ -47,6 +48,8 @@ namespace CoverShooter
         public RectTransform FillRect;
 
         public Image fillImage;
+        public TextMeshProUGUI ammoTxt;
+
         /// <summary>
         /// Link to the icon object.
         /// </summary>
@@ -94,6 +97,7 @@ namespace CoverShooter
             {
                 if (Target != null)
                     Value = Target.LoadPercentage;
+                
 
                 if (Name != null)
                     Name.text = Target.name;
@@ -140,6 +144,7 @@ namespace CoverShooter
         private void Update()
         {
             fillImage.fillAmount = Value;
+            ammoTxt.SetText(Target.LoadedBulletsLeft.ToString());
         }
     }
 }

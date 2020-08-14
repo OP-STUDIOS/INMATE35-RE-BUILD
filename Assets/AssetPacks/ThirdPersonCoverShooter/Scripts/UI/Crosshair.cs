@@ -2,7 +2,6 @@
 
 namespace CoverShooter
 {
-    [RequireComponent(typeof(ThirdPersonCamera))]
     public class Crosshair : MonoBehaviour
     {
         /// <summary>
@@ -35,19 +34,15 @@ namespace CoverShooter
         [Tooltip("Settings to use when aiming a sniper.")]
         public CrosshairSettings Sniper = CrosshairSettings.Default();
 
+        [SerializeField]
         private ThirdPersonCamera _thirdPersonCamera;
+        [SerializeField]
         private Camera _camera;
 
         private float _recoil;
         private float _fov;
         private CrosshairSettings _settings = CrosshairSettings.Default();
         private float _previousAlpha;
-
-        private void Awake()
-        {
-            _thirdPersonCamera = GetComponent<ThirdPersonCamera>();
-            _camera = GetComponent<Camera>();
-        }
 
         /// <summary>
         /// Draws the crosshair.
@@ -112,7 +107,7 @@ namespace CoverShooter
 
             if (_thirdPersonCamera.Target != null && _thirdPersonCamera.Target.IsScoping)
                 return;
-            
+
             var lerp = settings.LowAngle < settings.HighAngle ? Mathf.Clamp01((_fov - settings.LowAngle) / (settings.HighAngle - settings.LowAngle)) : 0;
             var sprite = settings.Sprites[(int)(lerp * (settings.Sprites.Length - 1))];
 
@@ -142,6 +137,7 @@ namespace CoverShooter
             GUI.color = new Color(1, 1, 1, _thirdPersonCamera.CrosshairAlpha);
             GUI.DrawTextureWithTexCoords(dest, texture, source, true);
             GUI.color = previous;
+
         }
     }
 }
