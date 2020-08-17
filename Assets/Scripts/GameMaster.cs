@@ -6,9 +6,10 @@ using CoverShooter;
 
 public class GameMaster : MonoBehaviour
 {
-    private int currentScore;
+    public int currentScore;
     private int highScore;
     private bool gameIsPaused = false;
+    private bool isGameOver = false;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
@@ -35,13 +36,16 @@ public class GameMaster : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!gameIsPaused)
+            if (!isGameOver)
             {
-                PauseGame();
-            }
-            else
-            {
-                ResumeGame();
+                if (!gameIsPaused)
+                {
+                    EnablePauseMenu();
+                }
+                else
+                {
+                    ResumeGame();
+                }
             }
         }
     }
@@ -67,6 +71,12 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    private void EnablePauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        PauseGame();
+    }
+
     public void PauseGame()
     {
         Time.timeScale = 0f;
@@ -74,7 +84,6 @@ public class GameMaster : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameGUI.SetActive(false);
-        pauseMenu.SetActive(true);
         crossHair.SetActive(false);
         FindObjectOfType<ThirdPersonInput>().isCharacterPaused = true;
         gameIsPaused = true;
@@ -102,8 +111,11 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator GameOverRoutine()
     {
+        isGameOver = true;
         DefeatedText.SetActive(true);
         yield return new WaitForSeconds(2f);
+        PauseGame();
+        pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -116,8 +128,11 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator GameWonRoutine()
     {
+        isGameOver = true;
         VictoryText.SetActive(true);
         yield return new WaitForSeconds(2f);
+        PauseGame();
+        pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
