@@ -18,7 +18,12 @@ public class SceneLoader : MonoBehaviour
     public void OnPlayMenuBtnClick()
     {
         SceneManager.LoadScene(1);
-        
+    }
+
+    public void RePlayBtnClick()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
     public void OnQuitBtnClick()

@@ -14,24 +14,12 @@ public class Trigger_Enemy_Spawn : MonoBehaviour
 
 
     private bool done;
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" )
         {
             SpawnEnemy();
-            
         }
     }
     private void DestroySelf()

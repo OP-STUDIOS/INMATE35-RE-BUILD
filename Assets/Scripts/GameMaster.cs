@@ -18,8 +18,10 @@ public class GameMaster : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject crossHair;
 
-    public GameObject VictoryText;
-    public GameObject DefeatedText;
+    public GameObject gameWonView;
+    public GameObject gameOverView;
+    //public TextMeshProUGUI scoreText;
+   // public TextMeshProUGUI highScoreText;
 
     private void Start()
     {
@@ -100,8 +102,8 @@ public class GameMaster : MonoBehaviour
         crossHair.SetActive(true);
         FindObjectOfType<ThirdPersonInput>().isCharacterPaused = false;
         gameIsPaused = false;
-        DefeatedText.SetActive(false);
-        VictoryText.SetActive(false);
+        gameOverView.SetActive(false);
+        gameWonView.SetActive(false);
     }
 
     public void GameOver()
@@ -112,7 +114,7 @@ public class GameMaster : MonoBehaviour
     IEnumerator GameOverRoutine()
     {
         isGameOver = true;
-        DefeatedText.SetActive(true);
+        gameOverView.SetActive(true);
         yield return new WaitForSeconds(2f);
         PauseGame();
         pauseMenu.SetActive(false);
@@ -129,7 +131,7 @@ public class GameMaster : MonoBehaviour
     IEnumerator GameWonRoutine()
     {
         isGameOver = true;
-        VictoryText.SetActive(true);
+        gameWonView.SetActive(true);
         yield return new WaitForSeconds(2f);
         PauseGame();
         pauseMenu.SetActive(false);

@@ -54,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 int randomSpawnPointNo = Random.Range(0, spawnLocation.Length - 1);
                 Instantiate(GenerateRandomEnemyNo(), spawnLocation[randomSpawnPointNo].transform.position, spawnLocation[randomSpawnPointNo].transform.rotation);
+              //  Destroy(spawnLocation[randomSpawnPointNo]);
             }
         }
     }
@@ -76,5 +77,6 @@ public class EnemySpawner : MonoBehaviour
             return level1_enemyAI;
         }
         //85% chance
+        ///Stage 1
     }
 }
