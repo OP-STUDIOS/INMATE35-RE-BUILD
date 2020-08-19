@@ -42,7 +42,7 @@ public class SlowMotionManager : MonoBehaviour
     private void SlowMotionInput()
     {
         slowMoSlider = Mathf.Clamp(slowMoSlider, 0, 1);
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (Time.timeScale == 1.0f)
             {
@@ -50,7 +50,7 @@ public class SlowMotionManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             if (!autoReset)
             {

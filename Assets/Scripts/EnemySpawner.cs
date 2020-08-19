@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     private int spawnFrequency = 20;
     [SerializeField]
     private int spawnCount = 3;
+    private int lastSpawnPointNo;
 
     private void Start()
     {
@@ -52,9 +53,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 1; i <= noOfEnemyToSpawn; i++)
             {
-                int randomSpawnPointNo = Random.Range(0, spawnLocation.Length - 1);
-                Instantiate(GenerateRandomEnemyNo(), spawnLocation[randomSpawnPointNo].transform.position, spawnLocation[randomSpawnPointNo].transform.rotation);
-              //  Destroy(spawnLocation[randomSpawnPointNo]);
+                Instantiate(GenerateRandomEnemyNo(), spawnLocation[GenerateRandomSpawnPoint()].transform.position, spawnLocation[GenerateRandomSpawnPoint()].transform.rotation);
             }
         }
     }
@@ -62,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject GenerateRandomEnemyNo()
     {
         int randomNo = Random.Range(1, 100);
-        if(randomNo >= 95)
+        if (randomNo >= 95)
         {
             return level3_enemyAI;
         }
@@ -79,4 +78,21 @@ public class EnemySpawner : MonoBehaviour
         //85% chance
         ///Stage 1
     }
+
+    private int GenerateRandomSpawnPoint()
+    {
+        int randomSpawnPointNo = Random.Range(0, spawnLocation.Length - 1);
+        if (randomSpawnPointNo == lastSpawnPointNo)
+        {
+            int new_RandomSpawnPointNo = Random.Range(0, spawnLocation.Length - 1);
+            lastSpawnPointNo = new_RandomSpawnPointNo;
+            return new_RandomSpawnPointNo;
+        }
+        else
+        {
+            lastSpawnPointNo = randomSpawnPointNo;
+            return randomSpawnPointNo;
+        }
+    }
 }
+

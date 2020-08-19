@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 1026102746491147777}
   - component: {fileID: 1026102746491147776}
   m_Layer: 10
-  m_Name: Enemy_AI
+  m_Name: Enemy_AI_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2265,9 +2265,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints:
-  - Position: {x: 15.71, y: 0, z: -5.79}
-    Run: 0
-    Pause: 0
   - Position: {x: 16.443077, y: -0.0000014216323, z: -7.473072}
     Run: 0
     Pause: 0

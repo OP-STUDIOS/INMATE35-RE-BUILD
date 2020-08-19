@@ -13,6 +13,10 @@ public class GameMaster : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI gameWonHighScoreTxt;
+    public TextMeshProUGUI gameWonCurrentScoreTxt;
+    public TextMeshProUGUI gameOverHighScoreTxt;
+    public TextMeshProUGUI gameOverCurrentScoreTxt;
 
     public GameObject gameGUI;
     public GameObject pauseMenu;
@@ -20,8 +24,6 @@ public class GameMaster : MonoBehaviour
 
     public GameObject gameWonView;
     public GameObject gameOverView;
-    //public TextMeshProUGUI scoreText;
-   // public TextMeshProUGUI highScoreText;
 
     private void Start()
     {
@@ -115,10 +117,12 @@ public class GameMaster : MonoBehaviour
     {
         isGameOver = true;
         gameOverView.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        gameOverHighScoreTxt.text = highScore.ToString();
+        gameOverCurrentScoreTxt.text = currentScore.ToString();
         PauseGame();
         pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
+        yield return new WaitForSeconds(2f);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
@@ -132,10 +136,12 @@ public class GameMaster : MonoBehaviour
     {
         isGameOver = true;
         gameWonView.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        gameWonHighScoreTxt.text = highScore.ToString();
+        gameWonCurrentScoreTxt.text = currentScore.ToString();
         PauseGame();
         pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
+        yield return new WaitForSeconds(2f);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }

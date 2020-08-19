@@ -121,11 +121,11 @@ MonoBehaviour:
       MinAngle: -65
       MaxAngle: 45
     Aim:
-      Offset: {x: 0.77, y: 0.33, z: -0.87}
+      Offset: {x: 0.42, y: 0.36, z: -0.87}
       Orientation: {x: 0, y: 0, z: 0}
       Pivot: 2
       ConstantPivot: {x: 0, y: 2, z: 0}
-      FOV: 60
+      FOV: 70
       MinAngle: -65
       MaxAngle: 45
     Melee:
@@ -205,7 +205,7 @@ MonoBehaviour:
       Orientation: {x: 0, y: 0, z: 0}
       Pivot: 0
       ConstantPivot: {x: 0, y: 0, z: 0}
-      FOV: 26
+      FOV: 67
       MinAngle: -65
       MaxAngle: 45
     LowCornerZoom:
