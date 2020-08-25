@@ -1379,7 +1379,7 @@ namespace CoverShooter
                     break;
 
                 case AIStartMode.patrol:
-                    _futureSetState = FighterState.patrol;
+                    _futureSetState = FighterState.standAndFight;
                     break;
 
                 case AIStartMode.searchAround:

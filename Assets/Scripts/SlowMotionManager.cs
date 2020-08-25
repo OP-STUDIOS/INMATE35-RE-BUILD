@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CoverShooter;
+using UnityEngine.Rendering.PostProcessing;
 
 public class SlowMotionManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SlowMotionManager : MonoBehaviour
     public GameObject camerastart;
     private SFX_Manager sfx_Manager;
     private CharacterMotor playerCharacterMotor;
+    public Camera cam;
 
     public float slowMoSlider = 1;
 
@@ -97,6 +99,7 @@ public class SlowMotionManager : MonoBehaviour
         playerCharacterMotor.Speed = 4f;
         sfx_Manager.PlaySound("SlowMoEnter");
         sfx_Manager.PlaySoundOnLoop("SlowMoMiddle");
+        cam.GetComponent<PostProcessLayer>().enabled = true;
     }
 
     private void SlowMotionOff()
@@ -107,5 +110,6 @@ public class SlowMotionManager : MonoBehaviour
         playerCharacterMotor.Speed = 1f;
         sfx_Manager.PlaySound("SlowMoExit");
         sfx_Manager.StopSound("SlowMoMiddle");
+        cam.GetComponent<PostProcessLayer>().enabled = false;
     }
 }

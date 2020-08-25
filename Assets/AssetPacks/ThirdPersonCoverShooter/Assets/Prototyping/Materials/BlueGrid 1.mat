@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlueGrid 1
-  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: ec5233836b243524a882f38add6a606c, type: 3}
   m_ShaderKeywords: _EMISSION _EMISSIONMAP _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
     _UVSEC_UV1
   m_LightmapFlags: 2
@@ -64,6 +64,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _myCube:
+        m_Texture: {fileID: 8900000, guid: cb52e5e7571f8a74a933f646ad777b2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _myTex:
+        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaTestRef: 0.5
     - _BumpScale: 1
@@ -84,6 +92,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _myERange: 0.12
+    - _myFloat: 0.37
+    - _myInt: 0.4
+    - _mySlider: 418.5
+    - _myTRange: 0.83
     m_Colors:
     - _Color: {r: 0.3032156, g: 0.22188583, b: 0.5588235, a: 1}
     - _EmissionColor: {r: 0.487, g: 0.487, b: 0.487, a: 1.3348337}
@@ -91,3 +104,8 @@ Material:
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
     - _SpecularColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+    - _myColor: {r: 1, g: 1, b: 1, a: 1}
+    - _myColour: {r: 0.5245314, g: 0.08721964, b: 0.5283019, a: 1}
+    - _myEColor: {r: 1, g: 1, b: 1, a: 1}
+    - _myEmission: {r: 0.011770177, g: 0.0013349934, b: 0.01886791, a: 1}
+    - _myVector: {r: 110, g: 45, b: 110, a: 10}
