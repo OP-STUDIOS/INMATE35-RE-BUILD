@@ -7,13 +7,19 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class SlowMotionManager : MonoBehaviour
 {
+    public Material EnemySlowMoMaterial;
+    public Material EnemyDefaultMaterial;
+
     public Image clockSlider;
     public GameObject camerastart;
     private SFX_Manager sfx_Manager;
     private CharacterMotor playerCharacterMotor;
     public Camera cam;
+    public GameObject cinemaEffect;
 
     public float slowMoSlider = 1;
+    public float slowMoDuration = 0.8f;
+    public float slowMoGeneration = 0.8f;
 
     public bool UsingSlowMo = false;
     private bool autoReset = false;
@@ -82,11 +88,11 @@ public class SlowMotionManager : MonoBehaviour
     {
         if (UsingSlowMo)
         {
-            slowMoSlider -= 0.8f * Time.deltaTime;
+            slowMoSlider -= slowMoDuration * Time.deltaTime;
         }
         else
         {
-            slowMoSlider += 0.08f * Time.deltaTime;
+            slowMoSlider += slowMoGeneration * Time.deltaTime;
         }
     }
 
@@ -100,6 +106,8 @@ public class SlowMotionManager : MonoBehaviour
         sfx_Manager.PlaySound("SlowMoEnter");
         sfx_Manager.PlaySoundOnLoop("SlowMoMiddle");
         cam.GetComponent<PostProcessLayer>().enabled = true;
+        ChangeEnemyMaterialToSlowMo();
+        cinemaEffect.SetActive(true);
     }
 
     private void SlowMotionOff()
@@ -111,5 +119,32 @@ public class SlowMotionManager : MonoBehaviour
         sfx_Manager.PlaySound("SlowMoExit");
         sfx_Manager.StopSound("SlowMoMiddle");
         cam.GetComponent<PostProcessLayer>().enabled = false;
+        ChangeEnemyMaterialToDefault();
+        cinemaEffect.SetActive(false);
+    }
+    private void ChangeEnemyMaterialToSlowMo()
+    {
+        GameObject[] _enimies;
+        _enimies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (_enimies != null)
+        {
+            for (int i = 0; i < _enimies.Length; i++)
+            {
+                _enimies[i].GetComponentInChildren<SkinnedMeshRenderer>().material = EnemySlowMoMaterial;
+            }
+        }
+    }
+
+    private void ChangeEnemyMaterialToDefault()
+    {
+        GameObject[] _enimies;
+        _enimies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (_enimies != null)
+        {
+            for (int i = 0; i < _enimies.Length; i++)
+            {
+                _enimies[i].GetComponentInChildren<SkinnedMeshRenderer>().material = EnemyDefaultMaterial;
+            }
+        }
     }
 }

@@ -1965,6 +1965,7 @@ GameObject:
   - component: {fileID: 1026102746491147777}
   - component: {fileID: 1026102746491147776}
   - component: {fileID: -8644451116213531802}
+  - component: {fileID: 2011157209564363987}
   m_Layer: 8
   m_Name: Enemy_AI_3
   m_TagString: Enemy
@@ -2694,6 +2695,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2011157209564363987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024851250300975601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4e53010f1a80458672ad8500e8456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySlowMoMaterial: {fileID: 0}
+  EnemyDefaultMaterial: {fileID: 0}
 --- !u!1 &1024851260236757747
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,7 +3101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8fc704a8ebe9824087bfbe66f144a07, type: 2}
+  - {fileID: 2100000, guid: 243d45c01f1342849bdd364a470916a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6701,6 +6716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089866828116192631}
   - component: {fileID: 5196763754509653502}
+  - component: {fileID: 4085632397394618861}
   m_Layer: 8
   m_Name: Inmate
   m_TagString: Untagged
@@ -6740,7 +6756,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 211e55cfcae89084cbf01492b3aeebfa, type: 2}
+  - {fileID: 2100000, guid: 243d45c01f1342849bdd364a470916a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6825,6 +6841,21 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.005611509, y: -0.17315194, z: 0.026356518}
     m_Extent: {x: 0.9586593, y: 1.0225453, z: 0.27966285}
   m_DirtyAABB: 0
+--- !u!114 &4085632397394618861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285294823716560779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4e53010f1a80458672ad8500e8456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySlowMoMaterial: {fileID: 2100000, guid: 444e4aa9734669646ada7b2129c09816, type: 2}
+  EnemyDefaultMaterial: {fileID: 2100000, guid: 243d45c01f1342849bdd364a470916a1,
+    type: 2}
 --- !u!1 &6293423544710218187
 GameObject:
   m_ObjectHideFlags: 0
