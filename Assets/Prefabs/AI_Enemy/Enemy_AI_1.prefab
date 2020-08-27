@@ -3041,7 +3041,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 243d45c01f1342849bdd364a470916a1, type: 2}
+  - {fileID: 2100000, guid: cad59e126d1d96743b3808dedde79e85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6935,7 +6935,6 @@ MonoBehaviour:
   EnemySlowMoMaterial: {fileID: 2100000, guid: 444e4aa9734669646ada7b2129c09816, type: 2}
   EnemyDefaultMaterial: {fileID: 2100000, guid: 243d45c01f1342849bdd364a470916a1,
     type: 2}
-  slowMotionManager: {fileID: 0}
 --- !u!1 &6293423544710218187
 GameObject:
   m_ObjectHideFlags: 0
