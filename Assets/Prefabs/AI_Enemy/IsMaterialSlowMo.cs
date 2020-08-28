@@ -15,7 +15,7 @@ public class IsMaterialSlowMo : MonoBehaviour
     {
         slowMotionManager = FindObjectOfType<SlowMotionManager>();
 
-        if (slowMotionManager.UsingSlowMo == true)
+        if (slowMotionManager.UsingSlowMo)
         {
             GetComponentInChildren<SkinnedMeshRenderer>().material = EnemySlowMoMaterial;
         }
@@ -23,11 +23,5 @@ public class IsMaterialSlowMo : MonoBehaviour
         {
             GetComponentInChildren<SkinnedMeshRenderer>().material = EnemyDefaultMaterial;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

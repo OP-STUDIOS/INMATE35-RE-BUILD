@@ -5307,7 +5307,6 @@ namespace CoverShooter
                 {
                     for (int i = 0; i < _physicsListeners.Length; i++)
                         _physicsListeners[i].OnFootstep(_leftFoot.transform.position);
-
                     if (Stepped != null) Stepped.Invoke();
                 }
             }

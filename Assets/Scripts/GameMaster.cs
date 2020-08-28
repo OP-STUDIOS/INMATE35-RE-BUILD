@@ -8,7 +8,8 @@ public class GameMaster : MonoBehaviour
 {
     public int currentScore;
     private int highScore;
-    private bool gameIsPaused = false;
+    public bool gameIsPaused = false;
+    public bool isStarting = true;
     private bool isGameOver = false;
 
     public TextMeshProUGUI scoreText;
@@ -20,10 +21,20 @@ public class GameMaster : MonoBehaviour
 
     public GameObject gameGUI;
     public GameObject pauseMenu;
-    public GameObject crossHair;
+    public GameObject crossHair1;
+    public GameObject crossHair2;
 
     public GameObject gameWonView;
     public GameObject gameOverView;
+
+
+    private void Awake()
+    {
+        StartCoroutine(PauseOnStartUp());
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //Start the scene with cursor locked and not visible
+    }
 
     private void Start()
     {
@@ -31,9 +42,7 @@ public class GameMaster : MonoBehaviour
         highScore = PlayerPrefs.GetInt("HighScore");
         UpdateCurrentScoreText();
         UpdateHighScoreText();
-        pauseMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        pauseMenu.SetActive(false);    
     }
 
     private void Update()
@@ -88,7 +97,8 @@ public class GameMaster : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameGUI.SetActive(false);
-        crossHair.SetActive(false);
+        crossHair1.SetActive(false);
+        crossHair2.SetActive(false);
         FindObjectOfType<ThirdPersonInput>().isCharacterPaused = true;
         gameIsPaused = true;
     }
@@ -101,11 +111,17 @@ public class GameMaster : MonoBehaviour
         Cursor.visible = false;
         pauseMenu.SetActive(false);
         gameGUI.SetActive(true);
-        crossHair.SetActive(true);
         FindObjectOfType<ThirdPersonInput>().isCharacterPaused = false;
         gameIsPaused = false;
         gameOverView.SetActive(false);
         gameWonView.SetActive(false);
+
+        if (!isStarting)
+        {
+            crossHair1.SetActive(true);
+            crossHair2.SetActive(true);
+        }
+        //Check if it's start of the game
     }
 
     public void GameOver()
@@ -144,5 +160,16 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+    }
+
+    IEnumerator PauseOnStartUp()
+    {
+        isStarting = true;
+        crossHair1.SetActive(false);
+        crossHair2.SetActive(false);
+        yield return new WaitForSecondsRealtime(9f);
+        isStarting = false;
+        crossHair1.SetActive(true);
+        crossHair2.SetActive(true);
     }
 }

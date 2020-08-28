@@ -13,6 +13,7 @@ public class SlowMotionManager : MonoBehaviour
     public Image clockSlider;
     public GameObject camerastart;
     private SFX_Manager sfx_Manager;
+    private GameMaster gameMaster;
     private CharacterMotor playerCharacterMotor;
     public Camera cam;
     public GameObject cinemaEffect;
@@ -34,6 +35,7 @@ public class SlowMotionManager : MonoBehaviour
     private void Start()
     {
         sfx_Manager = FindObjectOfType<SFX_Manager>();
+        gameMaster = FindObjectOfType<GameMaster>();
         playerCharacterMotor = GameObject.FindWithTag("Player").GetComponent<CharacterMotor>();
     }
 
@@ -52,15 +54,15 @@ public class SlowMotionManager : MonoBehaviour
         slowMoSlider = Mathf.Clamp(slowMoSlider, 0, 1);
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (Time.timeScale == 1.0f)
+            if (Time.timeScale == 1.0f && !gameMaster.isStarting && !gameMaster.gameIsPaused)
             {
                 SlowMotionOn();
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse1) )
         {
-            if (!autoReset)
+            if (!autoReset && UsingSlowMo)
             {
                 SlowMotionOff();
             }
