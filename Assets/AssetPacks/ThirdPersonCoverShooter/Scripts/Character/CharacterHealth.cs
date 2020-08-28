@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -148,7 +149,14 @@ namespace CoverShooter
             if (gameObject.tag == "Enemy")
             {
                 FindObjectOfType<GameMaster>().AddScore();
+                StartCoroutine(DelayDestroy());
             }
+        }
+
+        IEnumerator DelayDestroy()
+        {
+            yield return new WaitForSecondsRealtime(5);
+            Destroy(gameObject);
         }
 
         /// <summary>

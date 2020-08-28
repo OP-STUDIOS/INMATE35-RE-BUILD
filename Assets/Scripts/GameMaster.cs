@@ -131,14 +131,14 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator GameOverRoutine()
     {
-        isGameOver = true;
-        gameOverView.SetActive(true);
+        isGameOver = true;  
         gameOverHighScoreTxt.text = highScore.ToString();
         gameOverCurrentScoreTxt.text = currentScore.ToString();
         PauseGame();
         pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
         yield return new WaitForSeconds(2f);
+        gameOverView.SetActive(true);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
@@ -150,14 +150,14 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator GameWonRoutine()
     {
-        isGameOver = true;
-        gameWonView.SetActive(true);
+        isGameOver = true;     
         gameWonHighScoreTxt.text = highScore.ToString();
         gameWonCurrentScoreTxt.text = currentScore.ToString();
         PauseGame();
         pauseMenu.SetActive(false);
         gameGUI.SetActive(false);
         yield return new WaitForSeconds(2f);
+        gameWonView.SetActive(true);
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
