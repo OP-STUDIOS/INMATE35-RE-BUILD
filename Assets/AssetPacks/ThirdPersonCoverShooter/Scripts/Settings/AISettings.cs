@@ -165,10 +165,10 @@ namespace CoverShooter
         {
             if (Target != null)
             {
-                if (PassCaller)
-                    Target.SendMessage(Message, caller, SendMessageOptions.RequireReceiver);
-                else
-                    Target.SendMessage(Message, SendMessageOptions.RequireReceiver);
+               // if (PassCaller) ;
+                //Target.SendMessage(Message, caller, SendMessageOptions.RequireReceiver);
+                //else;
+                    //Target.SendMessage(Message, SendMessageOptions.RequireReceiver);
             }
         }
 
